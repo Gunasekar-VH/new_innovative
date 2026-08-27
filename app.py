@@ -1,8 +1,8 @@
 from flask import Flask
 from models import db, init_db
-from routes.auth import auth_bp
-from routes.admin import admin_bp
-from routes.user import user_bp
+from auth import auth_bp
+from admin import admin_bp
+from user import user_bp
 
 
 def create_app():
