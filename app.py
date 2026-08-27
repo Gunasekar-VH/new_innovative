@@ -1,5 +1,5 @@
 from flask import Flask
-from models.models import db, init_db
+from models import db, init_db
 from routes.auth import auth_bp
 from routes.admin import admin_bp
 from routes.user import user_bp
