@@ -3,7 +3,7 @@ from functools import wraps
 
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 
-from models.models import Book, Borrowing, User, db
+from models import Book, Borrowing, User, db
 
 user_bp = Blueprint("user", __name__, url_prefix="/user")
 
