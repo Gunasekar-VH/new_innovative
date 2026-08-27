@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="layout">
+  <aside class="sidebar">
+    <a href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('admin.add_book') }}">Add Book</a>
+    <a href="{{ url_for('admin.books') }}">View Books</a>
+    <a href="{{ url_for('admin.borrowed_books') }}">Borrowed Books</a>
+    <a class="active" href="{{ url_for('admin.users') }}">Users</a>
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
+  </aside>
+  <section class="content-area">
+    <h2>Registered Users</h2>
+    <div class="table">
+      {% for user in users %}
+      <div class="row">
+        <div>{{ user.id }}</div><div>{{ user.name }}</div><div>{{ user.username }}</div><div>{{ user.email }}</div><div>{{ user.created_at.strftime('%Y-%m-%d') }}</div>
+      </div>
+      {% else %}
+      <p class="empty">No users found.</p>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

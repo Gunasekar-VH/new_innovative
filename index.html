@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero card">
+  <div>
+    <p class="eyebrow">Beginner-friendly library system</p>
+    <h1>Manage books, members, and borrowing in one clean place.</h1>
+    <p class="lead">Separate pages for admin and users, secure login, searchable books, and full borrow/return tracking.</p>
+    <div class="actions">
+      <a class="btn" href="{{ url_for('auth.login') }}">Login</a>
+      <a class="btn secondary" href="{{ url_for('auth.register') }}">Register</a>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="mini-stat"><span>Admin</span><strong>admin / admin123</strong></div>
+    <div class="mini-stat"><span>Design</span><strong>simple + responsive</strong></div>
+    <div class="mini-stat"><span>Storage</span><strong>SQLite + SQLAlchemy</strong></div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="layout">
+  <aside class="sidebar">
+    <a href="{{ url_for('user.dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('user.books') }}">Available Books</a>
+    <a href="{{ url_for('user.borrowed_books') }}">My Borrowed Books</a>
+    <a href="{{ url_for('user.profile') }}">Profile</a>
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
+  </aside>
+  <section class="content-area">
+    <h2>User Dashboard</h2>
+    <div class="stats">
+      <div class="card stat"><span>{{ borrowed_count }}</span><small>Currently Borrowed</small></div>
+      <div class="card stat"><span>{{ user.name }}</span><small>Welcome Back</small></div>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="layout">
+  <aside class="sidebar">
+    <a href="{{ url_for('user.dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('user.books') }}">Available Books</a>
+    <a href="{{ url_for('user.borrowed_books') }}">My Borrowed Books</a>
+    <a class="active" href="{{ url_for('user.profile') }}">Profile</a>
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
+  </aside>
+  <section class="content-area">
+    <h2>Profile</h2>
+    <div class="card profile-card">
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Joined:</strong> {{ user.created_at.strftime('%Y-%m-%d') }}</p>
+    </div>
+  </section>
+</div>
+{% endblock %}

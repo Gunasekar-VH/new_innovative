@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="layout">
+  <aside class="sidebar">
+    <a href="{{ url_for('user.dashboard') }}">Dashboard</a>
+    <a class="active" href="{{ url_for('user.books') }}">Available Books</a>
+    <a href="{{ url_for('user.borrowed_books') }}">My Borrowed Books</a>
+    <a href="{{ url_for('user.profile') }}">Profile</a>
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
+  </aside>
+  <section class="content-area">
+    <div class="section-head">
+      <h2>Available Books</h2>
+      <form method="get" class="searchbar">
+        <input name="q" value="{{ request.args.get('q', '') }}" placeholder="Search by title, author, category, ISBN">
+        <button class="btn secondary" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="table">
+      {% for book in books %}
+      <div class="row">
+        <div>{{ book.title }}</div><div>{{ book.author }}</div><div>{{ book.category }}</div><div>{{ book.available_quantity }}</div>
+        <div>{{ 'Available' if book.available_quantity > 0 else 'Not Available' }}</div>
+        <div>
+          {% if book.available_quantity > 0 %}
+          <form method="post" action="{{ url_for('user.borrow_book', book_id=book.id) }}">
+            <button class="btn tiny" type="submit">Borrow Book</button>
+          </form>
+          {% else %}
+          <span class="pill muted">Not Available</span>
+          {% endif %}
+        </div>
+      </div>
+      {% else %}
+      <p class="empty">No books available.</p>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

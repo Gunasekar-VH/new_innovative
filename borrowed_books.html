@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="layout">
+  <aside class="sidebar">
+    <a href="{{ url_for('user.dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('user.books') }}">Available Books</a>
+    <a class="active" href="{{ url_for('user.borrowed_books') }}">My Borrowed Books</a>
+    <a href="{{ url_for('user.profile') }}">Profile</a>
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
+  </aside>
+  <section class="content-area">
+    <h2>My Borrowed Books</h2>
+    <div class="table">
+      {% for borrowing in borrowings %}
+      <div class="row">
+        <div>{{ borrowing.book.title }}</div><div>{{ borrowing.book.author }}</div>
+        <div>{{ borrowing.borrow_date.strftime('%Y-%m-%d') }}</div>
+        <div>{{ borrowing.return_date.strftime('%Y-%m-%d') if borrowing.return_date else '-' }}</div>
+        <div>{{ borrowing.status }}</div>
+        <div>
+          {% if borrowing.status == 'Borrowed' %}
+          <form method="post" action="{{ url_for('user.return_book', borrowing_id=borrowing.id) }}">
+            <button class="btn tiny" type="submit">Return Book</button>
+          </form>
+          {% else %}
+          <span class="pill muted">Returned</span>
+          {% endif %}
+        </div>
+      </div>
+      {% else %}
+      <p class="empty">You have no borrowed books.</p>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}
