@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import Flask,render_template
 from models import db, init_db
 from auth import auth_bp
 from admin import admin_bp
